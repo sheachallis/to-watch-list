@@ -1,18 +1,16 @@
 <template>
   <v-container>
-    <ListsCard />
+    <watch-list />
   </v-container>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ListsCard from "@/components/ListsCard.vue";
+import WatchList from "@/components/WatchList.vue";
 
 // Components
 export default defineComponent({
-  name: "HomeView",
-  components: {
-    ListsCard,
-  },
+  name: "WatchListView",
+  components: { WatchList },
 });
 </script>
