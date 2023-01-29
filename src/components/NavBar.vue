@@ -112,7 +112,8 @@ export default defineComponent({
           loadList(isEditing);
           navigateToList(isEditing);
         } catch (e) {
-          notifyError((e as Error).message);
+          const error = e as Error;
+          notifyError((e as Error).message, error);
         }
       }
       state.isEditing = null;

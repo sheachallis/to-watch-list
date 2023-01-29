@@ -11,6 +11,7 @@
         {{ iconNotificationType.get(notification.type) }}
       </v-icon>
       {{ notification.message }}
+      <v-spacer />
       <v-btn
         class="ml-3"
         size="small"
