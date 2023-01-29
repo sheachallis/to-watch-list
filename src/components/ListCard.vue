@@ -5,7 +5,12 @@
         {{ title }}
 
         <v-spacer />
-        <v-btn icon="mdi-share-variant" @click="onShare" />
+        <v-btn
+          icon="mdi-share-variant"
+          class="ma-n1"
+          variant="text"
+          @click="onShare"
+        />
       </v-row>
     </v-card-title>
     <v-list>
@@ -61,7 +66,8 @@ interface State {
 export default defineComponent({
   name: "ListsCard",
   setup() {
-    const { watchListStore } = injectStore();
+    const { notificationsStore, watchListStore } = injectStore();
+    const { notifyInfo, notifyError } = notificationsStore;
     const { title, content, deleteItem, moveItem } = watchListStore;
 
     const state = reactive<State>({
@@ -72,7 +78,17 @@ export default defineComponent({
     });
 
     function onShare() {
-      shareStatus();
+      try {
+        shareStatus(unref(title), unref(content), () =>
+          notifyInfo("List '" + unref(title) + "' copied to clipboard", 2500)
+        );
+      } catch (e) {
+        const error = e as Error;
+        notifyError(
+          "Failed to share list, cause: " + (error as Error).message,
+          error
+        );
+      }
     }
 
     const finalIndex = computed<number>(() => unref(content).length - 1);

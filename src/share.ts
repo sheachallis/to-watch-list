@@ -1,4 +1,5 @@
 import { UAParser } from "ua-parser-js";
+import WatchListItem from "./models/WatchListItem";
 
 const webShareApiDeviceTypes: string[] = ["mobile", "smarttv", "wearable"];
 const parser = new UAParser();
@@ -6,10 +7,11 @@ const browser = parser.getBrowser();
 const device = parser.getDevice();
 
 export const shareStatus = (
-  handleShareToClipboard = () => {},
-  handleShareFailure = () => {}
+  title: string,
+  content: WatchListItem[],
+  handleShareToClipboard = () => {}
 ) => {
-  const textToShare = generateShareText();
+  const textToShare = generateShareText(title, content);
 
   const shareData = { text: textToShare };
 
@@ -24,24 +26,31 @@ export const shareStatus = (
     shareSuccess = false;
   }
 
-  try {
-    if (!shareSuccess) {
-      if (navigator.clipboard) {
-        navigator.clipboard
-          .writeText(textToShare)
-          .then(handleShareToClipboard)
-          .catch(handleShareFailure);
-      } else {
-        handleShareFailure();
-      }
+  if (!shareSuccess) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textToShare).then(handleShareToClipboard);
+    } else {
+      throw new Error("Failed to copy list to clipboard");
     }
-  } catch (error) {
-    handleShareFailure();
   }
 };
 
-function generateShareText(): string {
-  return "list";
+function generateShareText(title: string, content: WatchListItem[]): string {
+  if (content.length === 0) {
+    throw new Error("List '" + title + "' is empty");
+  }
+
+  let list = title + "\n\n" + convertWatchListItems(content);
+
+  return list;
+}
+
+function convertWatchListItems(content: WatchListItem[]) {
+  return content
+    .map(
+      (item, index) => index + 1 + ".\t" + item.title + " (" + item.year + ")"
+    )
+    .join("\n");
 }
 
 const attemptShare = (shareData: object) => {

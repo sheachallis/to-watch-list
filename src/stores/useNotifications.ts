@@ -26,7 +26,13 @@ export default function useNotifications() {
     }
   }
 
-  function notifyError(message: string, timeout = 5000) {
+  function notifyError(
+    message: string,
+    cause: Error | undefined = undefined,
+    timeout = 5000
+  ) {
+    cause && console.error(cause);
+
     addNotification({
       message,
       timeout,
