@@ -9,28 +9,39 @@ interface OmdbItem {
   Poster: string;
 }
 
+export interface ListData {
+  items: WatchListItem[];
+  totalPages: number;
+}
+
 export class WatchListItemsService extends Service {
   public static readonly instance = new WatchListItemsService();
 
   protected readonly endpointFormatter = (): string => "";
 
-  public async get(query: string): Promise<WatchListItem[]> {
+  public async get(query: string, page: number = 1): Promise<ListData> {
     const { data } = await Service.http.get(this.endpoint, {
-      params: { s: query },
+      params: { s: query, page },
     });
 
-    const formattedData: WatchListItem[] = (
-      (data?.Search as OmdbItem[]) || []
-    ).map((item) => {
-      return {
-        title: item.Title,
-        year: item.Year,
-        imdbId: item.imdbID,
-        type: item.Type,
-        poster: item.Poster,
-      };
-    });
-    return formattedData;
+    const items: WatchListItem[] = ((data?.Search as OmdbItem[]) || []).map(
+      (item) => {
+        return {
+          title: item.Title,
+          year: item.Year,
+          imdbId: item.imdbID,
+          type: item.Type,
+          poster: item.Poster,
+        };
+      }
+    );
+
+    const totalPages = data ? Math.ceil(data.totalResults / 10) : 1;
+
+    return {
+      items,
+      totalPages,
+    };
   }
 }
 

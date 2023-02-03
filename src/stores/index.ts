@@ -18,7 +18,7 @@ export function defineStore(services: Services): Store {
   const store = {} as Store;
 
   store.notificationsStore = useNotifications();
-  store.watchListsStore = useWatchLists();
+  store.watchListsStore = useWatchLists(services);
 
   store.watchListStore = useWatchList(store);
   store.watchListItemsStore = useWatchListItems(services);
