@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createApp, getTransitionRawChildren } from "vue";
 
-const baseURL = "http://www.omdbapi.com/";
+const baseURL = "https://www.omdbapi.com/";
 
 const axiosInstance = axios.create({
   baseURL,
