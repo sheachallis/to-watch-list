@@ -11,7 +11,7 @@
     </template>
 
     <v-card width="30vw">
-      <v-card-title class="bg-grey-lighten-2">
+      <v-card-title class="bg-titleBar">
         <v-row no-gutters class="align-center"> Delete List </v-row>
       </v-card-title>
       <v-card-text>
