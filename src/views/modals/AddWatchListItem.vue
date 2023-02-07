@@ -10,7 +10,7 @@
       </v-list-item>
     </template>
     <v-card width="60vw">
-      <v-card-title class="bg-grey-lighten-2">
+      <v-card-title class="bg-titleBar">
         <v-row no-gutters class="align-center">
           Add an Item
           <v-spacer />
