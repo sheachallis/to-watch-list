@@ -16,7 +16,12 @@ export default function useVuerouter(services: Services, store: Store) {
       console.log();
 
       next(false);
-      throw error;
+      store.notificationsStore.notifyError(
+        (error as Error).message,
+        undefined,
+        -1
+      );
+      router.push("/");
     }
   };
 
