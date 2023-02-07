@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import WatchListView from "../views/WatchListView.vue";
+import NotFound from "../views/NotFound.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/list/:id",
     name: "WatchList",
     component: WatchListView,
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "Not Found",
+    component: NotFound,
   },
 ];
 
