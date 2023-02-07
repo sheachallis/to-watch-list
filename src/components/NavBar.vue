@@ -32,7 +32,13 @@
               @keyup.native.enter="onSetTitle"
               @focus="$event.target.select()"
             />
-            <span v-else>{{ list.title }}</span>
+            <span
+              v-else
+              class="d-inline-block text-truncate"
+              style="max-width: 95%"
+            >
+              {{ list.title }}
+            </span>
             <template #append>
               <v-btn
                 v-if="isHovering"

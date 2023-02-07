@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="bg-grey-lighten-2">
+    <v-card-title class="bg-titleBar">
       <v-row no-gutters class="align-center">
         {{ title }}
 
