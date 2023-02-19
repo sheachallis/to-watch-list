@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer permanent>
     <v-list v-model:selected="selected" nav>
-      <v-list-item class="text-body-1 font-weight-medium" value="title">
+      <v-list-item class="text-body-1 font-weight-medium">
         Your Lists
         <template #append>
           <v-btn

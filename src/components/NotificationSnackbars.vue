@@ -30,11 +30,13 @@ import { NotificationType } from "@/models/Notification";
 const iconNotificationType: Map<NotificationType, string> = new Map([
   [NotificationType.Error, "mdi-alert-circle"],
   [NotificationType.Info, "mdi-information"],
+  [NotificationType.Success, "mdi-check-circle"],
 ]);
 
 const colourNotificationType: Map<NotificationType, string> = new Map([
   [NotificationType.Error, "error"],
   [NotificationType.Info, "info"],
+  [NotificationType.Success, "success"],
 ]);
 
 export default defineComponent({
