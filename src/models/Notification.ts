@@ -1,6 +1,7 @@
 export enum NotificationType {
   Error,
   Info,
+  Success,
 }
 
 export default interface Notification {

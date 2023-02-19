@@ -35,7 +35,15 @@ export default defineComponent({
 </script>
 
 <style>
+@font-face {
+  font-family: "Anton";
+  src: url(./assets/fonts/Anton-Regular.ttf);
+}
+
 .v-dialog > .v-overlay__content {
   align-items: center;
+}
+.anton {
+  font-family: "Anton";
 }
 </style>

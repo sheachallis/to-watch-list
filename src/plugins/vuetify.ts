@@ -9,13 +9,19 @@ import colours from "vuetify/lib/util/colors";
 const light: ThemeDefinition = {
   dark: false,
   colors: {
-    titleBar: colours.grey.lighten3,
+    error: colours.red.darken2,
+    primary: colours.blue.base,
+    success: colours.green.darken2,
+    titleBar: colours.grey.lighten1,
   },
 };
 
 const dark: ThemeDefinition = {
   dark: true,
   colors: {
+    error: colours.red.base,
+    primary: colours.blue.lighten2,
+    success: colours.green.base,
     titleBar: colours.grey.darken3,
   },
 };
