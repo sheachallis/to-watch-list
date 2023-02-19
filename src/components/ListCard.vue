@@ -67,7 +67,7 @@ export default defineComponent({
   name: "ListsCard",
   setup() {
     const { notificationsStore, watchListStore } = injectStore();
-    const { notifyInfo, notifyError } = notificationsStore;
+    const { notifySuccess, notifyError } = notificationsStore;
     const { title, content, deleteItem, moveItem } = watchListStore;
 
     const state = reactive<State>({
@@ -80,7 +80,7 @@ export default defineComponent({
     function onShare() {
       try {
         shareStatus(unref(title), unref(content), () =>
-          notifyInfo("List '" + unref(title) + "' copied to clipboard", 2500)
+          notifySuccess("List '" + unref(title) + "' copied to clipboard")
         );
       } catch (e) {
         const error = e as Error;
